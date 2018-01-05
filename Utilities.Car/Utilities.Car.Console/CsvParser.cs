@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
 
 namespace Utilities.Car.Console
 {
@@ -20,6 +22,16 @@ namespace Utilities.Car.Console
                     yield return fields;
                 }
             }
+        }
+
+        public static TModel CreateCsvModel<TModel>(string[] names, string[] values) where TModel : new()
+        {
+            var propertiesDictionary = new Dictionary<string, string>(names.Length);
+            names.ForEach((i, name) => propertiesDictionary[name] = values[i]);
+
+            var propertiesString = JsonConvert.SerializeObject(propertiesDictionary);
+
+            return JsonConvert.DeserializeObject<TModel>(propertiesString);
         }
     }
 }
