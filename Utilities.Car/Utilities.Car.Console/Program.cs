@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Utilities.Car.Console.Models.Csv;
 
 namespace Utilities.Car.Console
 {
@@ -14,9 +15,10 @@ namespace Utilities.Car.Console
 
         private static async Task DoWork()
         {
-            var path = @"C:\Users\sergeypuzyrny\Source\Repos\Utilities\Utilities.Car\Utilities.Car.Console\vehicle-1-sync.csv";
+            var path = @"vehicle-1-sync.csv";
             var fields = await CsvParser.ParseFileAsync(path);
-            System.Console.WriteLine(ToString(fields));
+            var vehicleData = CsvParser.ParseListSection<VehicleCsv>("Vehicle", fields).ToList();
+            var logData = CsvParser.ParseListSection<LogItemCsv>("Log", fields).ToList();
         }
 
         public static string ToString<TItem>(IEnumerable<IEnumerable<TItem>> items)
