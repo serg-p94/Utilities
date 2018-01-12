@@ -1,7 +1,9 @@
 ﻿namespace Utilities.Car.Console.Models.Csv
 {
-    public class VehicleCsv
+    public class VehicleCsv : BaseCsvModel
     {
+        public override string SectionName => "Vehicle";
+
         public string Name { get; set; }
 
         public string Description { get; set; }

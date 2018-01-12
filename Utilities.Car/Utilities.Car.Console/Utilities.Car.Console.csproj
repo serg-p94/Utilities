@@ -49,6 +49,7 @@
     <Compile Include="CsvParser.cs" />
     <Compile Include="Extensions\LinqExtension.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Models\Csv\BaseCsvModel.cs" />
     <Compile Include="Models\Csv\LogItemCsv.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,8 +2,10 @@
 
 namespace Utilities.Car.Console.Models.Csv
 {
-    public class LogItemCsv
+    public class LogItemCsv : BaseCsvModel
     {
+        public override string SectionName => "Log";
+
         [JsonProperty("Data")]
         public string Date { get; set; }
 
@@ -54,5 +56,11 @@ namespace Utilities.Car.Console.Models.Csv
 
         [JsonProperty("UniqueId")]
         public string UniqueId { get; set; }
+
+        public override string ToString()
+        {
+            var valuesToExport = new[] {Date, Fuel, VolumePrice, Price, Odo};
+            return string.Join("\t", valuesToExport);
+        }
     }
 }
